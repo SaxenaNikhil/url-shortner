@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortener - Make Your Links Shorter</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-link"></i>
+                <h1>URL Shortener</h1>
+            </div>
+            <p class="tagline">Transform long URLs into short, shareable links</p>
+        </header>
+
+        <!-- Main Form Section -->
+        <main class="main-content">
+            <div class="url-form-container">
+                <form id="urlForm" class="url-form">
+                    <div class="input-group">
+                        <input 
+                            type="url" 
+                            id="urlInput" 
+                            placeholder="Enter your long URL here..." 
+                            required
+                            class="url-input"
+                        >
+                        <button type="submit" class="shorten-btn">
+                            <i class="fas fa-cut"></i>
+                            Shorten
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Result Section -->
+            <div id="resultSection" class="result-section" style="display: none;">
+                <div class="result-card">
+                    <h3>Your Shortened URL</h3>
+                    <div class="short-url-display">
+                        <input type="text" id="shortUrlOutput" readonly class="short-url-input">
+                        <button id="copyBtn" class="copy-btn" onclick="copyToClipboard()">
+                            <i class="fas fa-copy"></i>
+                            Copy
+                        </button>
+                    </div>
+                    <div class="url-info">
+                        <p><strong>Original URL:</strong> <span id="originalUrlDisplay"></span></p>
+                        <p><strong>Clicks:</strong> <span id="clickCount">0</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent URLs Section -->
+            <div class="recent-urls-section">
+                <h3>Recently Shortened URLs</h3>
+                <div id="recentUrls" class="recent-urls-grid">
+                    <div class="loading">Loading recent URLs...</div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Features Section -->
+        <section class="features">
+            <h2>Why Use Our URL Shortener?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-bolt"></i>
+                    <h3>Lightning Fast</h3>
+                    <p>Generate short URLs instantly with our optimized system</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Secure & Reliable</h3>
+                    <p>Your URLs are safe and redirects are tracked securely</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Track Clicks</h3>
+                    <p>Monitor how many times your shortened links are clicked</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h3>Mobile Friendly</h3>
+                    <p>Works perfectly on all devices and screen sizes</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2024 URL Shortener. Built with ❤️ using Flask & modern web technologies.</p>
+        </footer>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
