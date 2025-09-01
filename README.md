@@ -246,4 +246,4 @@ If you get "No module named 'flask'" error:
 
 ---
 
-Built with ❤️ using Flask and modern web technologies.
+Built using Flask and modern web technologies.

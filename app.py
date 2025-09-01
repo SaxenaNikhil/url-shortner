@@ -5,9 +5,13 @@ import shortuuid
 import validators
 from datetime import datetime
 import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'your-secret-key-here')
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', '253290a19d8a42819a8ddd716af6b9a4')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///url_shortener.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
