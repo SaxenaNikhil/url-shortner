@@ -15,6 +15,12 @@ app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', '253290a19d8a42819a8ddd7
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///url_shortener.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
+# Production configuration
+if os.environ.get('FLASK_ENV') == 'production':
+    app.config['DEBUG'] = False
+else:
+    app.config['DEBUG'] = True
+
 db = SQLAlchemy(app)
 CORS(app)
 
@@ -39,6 +45,11 @@ def generate_short_code():
 def index():
     """Serve the main page"""
     return render_template('index.html')
+
+@app.route('/favicon.ico')
+def favicon():
+    """Handle favicon requests"""
+    return '', 204  # No content response
 
 @app.route('/api/shorten', methods=['POST'])
 def shorten_url():
@@ -136,6 +147,10 @@ def not_found(error):
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
-    app.run(debug=True, host='0.0.0.0', port=3000)
+    
+    # Use PORT environment variable for deployment, fallback to 3000 for local development
+    port = int(os.environ.get('PORT', 3000))
+    debug_mode = os.environ.get('FLASK_ENV') != 'production'
+    app.run(debug=debug_mode, host='0.0.0.0', port=port)
 
 

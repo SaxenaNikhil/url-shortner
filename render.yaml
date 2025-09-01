@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: url-shortener
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python app.py
+    envVars:
+      - key: FLASK_ENV
+        value: production
+      - key: SECRET_KEY
+        value: 253290a19d8a42819a8ddd716af6b9a4
